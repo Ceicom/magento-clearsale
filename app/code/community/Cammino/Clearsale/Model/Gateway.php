@@ -25,6 +25,7 @@ class Cammino_Clearsale_Model_Gateway {
 
             $creditcardMethods = explode(",", Mage::getStoreConfig("payment_services/clearsale/credicardmethod"));
             $boletoMethods = explode(",", Mage::getStoreConfig("payment_services/clearsale/boletomethod"));
+            $transferMethods = explode(",", Mage::getStoreConfig("payment_services/clearsale/transfermethod"));
 
             if (in_array($payment->getMethodInstance()->getCode(), $creditcardMethods)) {
                 $paymentType = 1;
@@ -53,8 +54,12 @@ class Cammino_Clearsale_Model_Gateway {
                 	$creditcardBrand = 8;
             }
 
-	if (in_array($payment->getMethodInstance()->getCode(), $boletoMethods)) {
-                $paymentType = 2;
+            if (in_array($payment->getMethodInstance()->getCode(), $boletoMethods)) {
+                        $paymentType = 2;
+            }
+
+	if (in_array($payment->getMethodInstance()->getCode(), $transferMethods)) {
+                $paymentType = 6;
 	}
 
             $data = array(

@@ -40,8 +40,8 @@ class Cammino_Clearsale_AdminController extends Mage_Adminhtml_Controller_Action
             "Cobranca_Documento" => preg_replace('/[^0-9]/', '', $customer->getTaxvat()),
             "Cobranca_Logradouro" => $billingAddress->getStreet(1),
             "Cobranca_Logradouro_Numero" => $billingAddress->getStreet(2),
-            "Cobranca_Logradouro_Complemento" => $billingAddress->getStreet(4),
-            "Cobranca_Bairro" => $billingAddress->getStreet(3),
+            "Cobranca_Logradouro_Complemento" => $billingAddress->getStreet($helper->getComplement()),
+            "Cobranca_Bairro" => $billingAddress->getStreet($helper->getNeighborhood()),
             "Cobranca_Cidade" => $billingAddress->getCity(),
             "Cobranca_Estado" => $billingAddress->getRegionCode(),
             "Cobranca_CEP" => preg_replace('/[^0-9]/', '', $billingAddress->getPostcode()),
@@ -51,8 +51,8 @@ class Cammino_Clearsale_AdminController extends Mage_Adminhtml_Controller_Action
             "Entrega_Nome" => $shippingName,
             "Entrega_Logradouro" => $shippingAddress->getStreet(1),
             "Entrega_Logradouro_Numero" => $shippingAddress->getStreet(2),
-            "Entrega_Logradouro_Complemento" => $shippingAddress->getStreet(4),
-            "Entrega_Bairro" => $shippingAddress->getStreet(3),
+            "Entrega_Logradouro_Complemento" => $shippingAddress->getStreet($helper->getComplement()),
+            "Entrega_Bairro" => $shippingAddress->getStreet($helper->getNeighborhood()),
             "Entrega_Cidade" => $shippingAddress->getCity(),
             "Entrega_Estado" => $shippingAddress->getRegionCode(),
             "Entrega_CEP" => preg_replace('/[^0-9]/', '', $shippingAddress->getPostcode()),
@@ -70,6 +70,8 @@ class Cammino_Clearsale_AdminController extends Mage_Adminhtml_Controller_Action
             $data["Item_Valor_$itemIndex"] = number_format(floatval($item->getPrice()), 2, ".", "");
             $itemIndex++;
         }
+
+        print_r($data) ;
 
         $url = $helper->getEnvironment();
         $data = $helper->serializeData($data);

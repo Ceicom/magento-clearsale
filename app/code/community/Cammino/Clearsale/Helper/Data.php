@@ -7,6 +7,8 @@ class Cammino_Clearsale_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_TRANSFER_METHOD = 'payment_services/clearsale/transfer_method';
     const XML_PATH_ENVIRONMENT = 'payment_services/clearsale/environment';
     const XML_PATH_KEY = 'payment_services/clearsale/key';
+    const XML_PATH_NEIGHBORHOOD = 'payment_services/clearsale/neighborhood';
+    const XML_PATH_COMPLEMENT = 'payment_services/clearsale/complement';
 
     public function conf($code,$store = null)
     {
@@ -44,6 +46,16 @@ class Cammino_Clearsale_Helper_Data extends Mage_Core_Helper_Abstract
     public function getKey($store = null)
     {
         return $this->conf(self::XML_PATH_KEY, $store);
+    }
+
+    public function getNeighborhood($store = null)
+    {
+        return $this->conf(self::XML_PATH_NEIGHBORHOOD, $store);
+    }
+
+    public function getComplement($store = null)
+    {
+        return $this->conf(self::XML_PATH_COMPLEMENT, $store);
     }
 
     public function serializeData($data)

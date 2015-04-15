@@ -18,7 +18,23 @@
                 </rewrite>
             </adminhtml>
         </blocks>
+        <helpers>
+            <cammino_clearsale>
+                <class>Cammino_Clearsale_Helper</class>
+            </cammino_clearsale>
+        </helpers>
     </global>
+    <admin>
+        <routers>
+            <clearsale>
+                <use>admin</use>
+                <args>
+                    <module>Cammino_Clearsale</module>
+                    <frontName>clearsale</frontName>
+                </args>
+            </clearsale>
+        </routers>
+    </admin>
     <default>
         <payment_services>
             <clearsale>

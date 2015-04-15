@@ -1,20 +1,34 @@
 <?php
-class Cammino_Clearsale_Block_Adminhtml_Sales_Order_View_Tab_Info extends Mage_Adminhtml_Block_Sales_Order_View_Tab_Info {
-    public function  __construct() {
-        parent::__construct();
-    }
+class Cammino_Clearsale_Block_Adminhtml_Sales_Order_View_Tab_Info extends Mage_Adminhtml_Block_Sales_Order_View_Tab_Info
+{
+
+    protected $url;
+    protected $orderId;
 
     public function getPaymentHtml()
     {
         $order = $this->getOrder();
         $html = parent::getPaymentHtml();
+        $helper = Mage::helper('cammino_clearsale');
 
         if ($order->getState() != "canceled") {
-            $clearsale = Mage::getModel('cammino_clearsale/gateway');
-            $url = $clearsale->getScoreUrl($order);
-            $html .= "<div style=\"margin-left:-8px;\"><iframe style=\"width:277px;height:96px;border:none;\" src=\"". $url ."\"></iframe></div>";
+
+            $this->url = $helper->getScoreUrl($order);
+            $this->orderId = $order->getRealOrderId();
+
+	$html .= $this->setTemplate('cammino/clearsale/info.phtml')->toHtml();
         }
 
         return $html;
+    }
+
+    public function getIframeUrl()
+    {
+        return $this->url;
+    }
+
+    public function getOrderId()
+    {
+        return $this->orderId;
     }
 }

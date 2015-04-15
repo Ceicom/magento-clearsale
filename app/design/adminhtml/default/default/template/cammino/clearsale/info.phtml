@@ -1,0 +1,15 @@
+<div id="clearsale-teste"></div>
+<script type="text/javascript">
+ function callController(){
+           new Ajax.Request("<?php echo $this->getUrl('clearsale/admin/index') ?>", {
+               method: 'Get',
+               parameters: {orderId:'<?php echo $this->getOrderId() ?>'},
+               onComplete: function(transport) {
+                    document.getElementById('clearsale-teste').innerHTML = '<div style="margin-left:-8px;"><iframe style="width:277px;height:96px;border:none;" src="<?php  echo $this->getIframeUrl(); ?>"></iframe></div>';
+                   console.log(transport.responseText);
+
+               }
+           });
+       }
+    callController();
+</script>

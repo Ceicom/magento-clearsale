@@ -11,12 +11,16 @@ class Cammino_Clearsale_Block_Adminhtml_Sales_Order_View_Tab_Info extends Mage_A
         $html = parent::getPaymentHtml();
         $helper = Mage::helper('cammino_clearsale');
 
-        if ($order->getState() != "canceled") {
+        $payment = $order->getPayment();
+        $type = $helper->getType($payment->getMethodInstance()->getCode(), $payment->getData("cammino_clearsale_data"));
+
+        if ($type['payment'] && $order->getState() != "canceled") {
 
             $this->url = $helper->getScoreUrl($order);
             $this->orderId = $order->getRealOrderId();
 
-	$html .= $this->setTemplate('cammino/clearsale/info.phtml')->toHtml();
+
+    $html .= $this->setTemplate('cammino/clearsale/info.phtml')->toHtml();
         }
 
         return $html;

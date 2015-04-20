@@ -72,11 +72,11 @@ class Cammino_Clearsale_Helper_Data extends Mage_Core_Helper_Abstract
     public function getScoreUrl($order)
     {
         $payment = $order->getPayment();
-        $addata = unserialize($payment->getData("additional_data"));
+        $addata = unserialize($payment->getData('cammino_clearsale_data'));
 
         if ($addata["clearsale"] != "exported") {
             $addata["clearsale"] = "exported";
-            $payment->setAdditionalData(serialize($addata))->save();
+            $payment->setAdditionalInformation('cammino_clearsale_data', serialize($addata))->save();
         }
 
         $url = "{$this->getEnvironment()}?codigoIntegracao={$this->getKey()}&PedidoID={$order->getRealOrderId()}";

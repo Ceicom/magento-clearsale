@@ -25,7 +25,7 @@ class Cammino_Clearsale_AdminController extends Mage_Adminhtml_Controller_Action
         $shippingCountry = Mage::getModel('directory/country')->loadByCode($shippingAddress->getCountry());
         $shippingPhone = preg_replace('/[^0-9]/', '', $shippingAddress->getTelephone());
 
-        $type = $helper->getType($payment->getMethodInstance()->getCode(), $payment->getData("additional_data"));
+        $type = $helper->getType($payment->getMethodInstance()->getCode(), $payment->getData("cammino_clearsale_data"));
 
         $data = array(
             "CodigoIntegracao" => Mage::getStoreConfig("payment_services/clearsale/key"),

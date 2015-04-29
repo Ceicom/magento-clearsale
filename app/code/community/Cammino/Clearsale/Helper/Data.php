@@ -35,9 +35,9 @@ class Cammino_Clearsale_Helper_Data extends Mage_Core_Helper_Abstract
         $environment = $this->conf(self::XML_PATH_ENVIRONMENT, $store);
 
         if ($environment == 'homolog') {
-            $environment = 'http://homolog.clearsale.com.br/start/Entrada/EnviarPedido.aspx';
+            $environment = 'https://homolog.clearsale.com.br/start/Entrada/EnviarPedido.aspx';
         }else{
-            $environment = 'http://www.clearsale.com.br/start/Entrada/EnviarPedido.aspx';
+            $environment = 'https://www.clearsale.com.br/start/Entrada/EnviarPedido.aspx';
         }
 
         return $environment;

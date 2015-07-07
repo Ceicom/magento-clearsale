@@ -18,12 +18,12 @@ class Cammino_Clearsale_AdminController extends Mage_Adminhtml_Controller_Action
         $billingName = $billingAddress->getFirstname() . " " . $billingAddress->getMiddlename() . " " . $billingAddress->getLastname();
         $billingName = trim(str_replace("  ", " ", $billingName));
         $billingCountry = Mage::getModel('directory/country')->loadByCode($billingAddress->getCountry());
-        $billingPhone = preg_replace('/[^0-9]/', '', $billingAddress->getTelephone());
+        $billingPhone = preg_replace('/[^0-9]/', '', $billingAddress->getTelephone() != '' ? $billingAddress->getTelephone() : $billingAddress->getFax());
 
         $shippingName = $shippingAddress->getFirstname() . " " . $shippingAddress->getMiddlename() . " " . $shippingAddress->getLastname();
         $shippingName = trim(str_replace("  ", " ", $shippingName));
         $shippingCountry = Mage::getModel('directory/country')->loadByCode($shippingAddress->getCountry());
-        $shippingPhone = preg_replace('/[^0-9]/', '', $shippingAddress->getTelephone());
+        $shippingPhone = preg_replace('/[^0-9]/', '', $shippingAddress->getTelephone() != '' ? $shippingAddress->getTelephone() : $shippingAddress->getFax());
 
         $type = $helper->getType($payment->getMethodInstance()->getCode(), $payment->getData("cammino_clearsale_data"));
 

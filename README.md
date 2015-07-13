@@ -1,4 +1,4 @@
-# Magento Clearsale
+# Magento ClearSale
 
 ## Instalation with modman
 

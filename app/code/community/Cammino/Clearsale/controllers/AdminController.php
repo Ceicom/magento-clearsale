@@ -96,5 +96,10 @@ class Cammino_Clearsale_AdminController extends Mage_Adminhtml_Controller_Action
         }
         return true;
     }
+    
+    protected function _isAllowed()
+    {
+        return Mage::getSingleton('admin/session')->isAllowed('admin/sales/order/actions/view');
+    }
 
 }
